@@ -44,11 +44,18 @@ const getProject = cache(async (slug: string) => {
 })
 
 export async function generateStaticParams() {
-  const projects = await prisma.project.findMany({
-    where: { status: 'PUBLISHED' },
-    select: { slug: true },
-  })
-  return projects.map((p) => ({ slug: p.slug }))
+  // 构建期 DB 不可用时（如 EdgeOne 调试部署）跳过预生成，
+  // 走运行时按需渲染（dynamicParams = true 已开启）
+  try {
+    const projects = await prisma.project.findMany({
+      where: { status: 'PUBLISHED' },
+      select: { slug: true },
+    })
+    return projects.map((p) => ({ slug: p.slug }))
+  } catch (e) {
+    console.warn('[generateStaticParams] DB unreachable, skip prerender:', (e as Error).message)
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
