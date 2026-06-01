@@ -1,9 +1,6 @@
 import { MetadataRoute } from 'next'
 import prisma from '@/lib/db'
 
-// debug: skip build-time prerender for repro deploy without DB
-export const dynamic = 'force-dynamic'
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.opcquan.com'
 

@@ -1,6 +1,4 @@
 export const revalidate = 3600
-// debug: skip build-time prerender for repro deploy without DB
-export const dynamic = 'force-dynamic'
 
 import { Metadata } from 'next'
 import Image from 'next/image'

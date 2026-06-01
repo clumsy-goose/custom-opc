@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 
 export const revalidate = 300 // 5 分钟缓存
-// debug: skip build-time prerender for repro deploy without DB
-export const dynamic = 'force-dynamic'
 
 export async function GET() {
   const latestIssues = await prisma.radarIssue.findMany({

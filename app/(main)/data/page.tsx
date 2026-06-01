@@ -4,8 +4,6 @@ import prisma from '@/lib/db'
 import { MapPin, Building2, BarChart3, Calendar } from 'lucide-react'
 
 export const revalidate = 3600 // 1小时更新一次
-// debug: skip build-time prerender for repro deploy without DB
-export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'OPC社区数据统计 · OPC圈',
