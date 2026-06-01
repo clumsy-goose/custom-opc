@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 
 export const revalidate = 3600 // 1小时缓存
+// debug: skip build-time prerender for repro deploy without DB
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   const [cityGroupData, difficultyData] = await Promise.all([

@@ -6,6 +6,9 @@ import { CommunitiesPageClient } from '@/components/communities/communities-page
 import { CommunitySubmissionTrigger } from '@/components/communities/community-submission-trigger'
 import prisma from '@/lib/db'
 
+// debug: skip build-time prerender for repro deploy without DB
+export const dynamic = 'force-dynamic'
+
 const getCommunityList = unstable_cache(
   async () => prisma.community.findMany({
     where: { status: 'ACTIVE' },

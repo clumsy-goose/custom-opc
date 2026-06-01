@@ -2,6 +2,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { unstable_cache } from 'next/cache'
 import prisma from '@/lib/db'
+
+// debug: skip build-time prerender for repro deploy without DB
+export const dynamic = 'force-dynamic'
 import { Building2, BadgeCheck, Handshake, Heart } from 'lucide-react'
 import { HeroCardLink } from '@/components/home/session-cta'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'

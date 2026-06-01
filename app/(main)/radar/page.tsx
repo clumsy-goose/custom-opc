@@ -4,6 +4,8 @@ import { serializeIssue } from '@/lib/radar/serializeIssue'
 import Link from 'next/link'
 
 export const revalidate = 300
+// debug: skip build-time prerender for repro deploy without DB
+export const dynamic = 'force-dynamic'
 
 export default async function RadarPage() {
   const latestIssue = await prisma.radarIssue.findFirst({
